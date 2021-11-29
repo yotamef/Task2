@@ -1,25 +1,41 @@
-import java.util.Scanner;
-
 public class Exercise4 {
 
-    public static Scanner reader = new Scanner(System.in);
+    public static int countDups(int [] arr) {
+        int countDups = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    countDups++;
+                    break;
+                }
+            }
+        }
+        return countDups;
+    }
+
+   public static int[] withoutDuplicates(int [] arr) {
+       int [] arrWithoutDups = new int[arr.length-countDups(arr)];
+       int k=0;
+       for (int i = 0; i<arr.length; i++) {
+           boolean isDuplicate = false;
+           for (int j = i+1; j<arr.length; j++) {
+               if (arr[i] == arr[j])
+                   isDuplicate = true;
+           }
+           if (!isDuplicate) {
+               arrWithoutDups[k] = arr[i];
+               k++;
+           }
+       }
+       return arrWithoutDups;
+   }
 
     public static void main(String[] args) {
-        System.out.println("Insert a");
-        int a = reader.nextInt();
-        System.out.println("Insert b");
-        int b = reader.nextInt();
-        System.out.println("Insert c");
-        int c = reader.nextInt();
-        if (Math.sqrt(Math.pow(b,2)-4*a*c) > 0) {
-            System.out.println("Two solutions: "+(int)(-b+Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a)+" "+ (int)(-b-Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a));
+        int [] arr = {1,2,3,3,4,5,8,9,0,0,0,9,4};
+        int [] arr2 = withoutDuplicates(arr);
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.print(arr2[i] + ", ");
         }
-        else if (Math.sqrt(Math.pow(b,2)-4*a*c) == 0) {
-            System.out.println("One solution: "+ -b/(2*a));
 
-        }
-        else {
-            System.out.println("No solutions");
-        }
     }
 }

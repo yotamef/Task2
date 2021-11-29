@@ -2,18 +2,30 @@ import java.util.Scanner;
 
 public class Exercise2 {
 
-    public static Scanner reader = new Scanner (System.in);
+    public static final int ARR_SIZE=10;
 
-    public static void main(String[] args) {
-        System.out.println("Insert a number");
-        int userNum1 = reader.nextInt();
-        System.out.println("Insert a number");
-        int userNum2 = reader.nextInt();
-        int sum = userNum1 + userNum2;
-        if (sum%2 == 0)
-            System.out.println("The sum is double");
-        else
-            System.out.println("The sum is odd");
+    public static void aboveAvg() {
+        Scanner scanner = new Scanner(System.in);
+        int[] arr = new int[ARR_SIZE];
+        int sum = 0;
+        double avg = 0;
+        for (int i=0; i<arr.length; i++) {
+            System.out.println("Insert number");
+            arr[i] = scanner.nextInt();
+            sum = sum +arr[i];
+        }
+
+        avg = sum/ARR_SIZE;
+        for (int i=0; i<arr.length; i++) {
+            if  (arr[i] > avg)
+                System.out.print(arr[i] + ", ");
+        }
 
     }
+
+    public static void main(String[] args) {
+
+        aboveAvg();
+    }
+
 }
